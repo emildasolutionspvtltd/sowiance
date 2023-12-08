@@ -1,0 +1,2130 @@
+backend:
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
+  branch: master
+media_folder: theme/assets/images
+public_folder: /assets/images
+collections:
+  - name: pages
+    label: Pages
+    identifier_field: title
+    extension: md
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    folder: cms/pages
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '{{slug}}.html'
+      - &ref_0
+        label: Seo
+        name: seo
+        widget: object
+        collapsed: true
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Description
+            name: description
+            widget: string
+            required: false
+          - label: No index
+            name: noindex
+            widget: boolean
+            default: false
+            required: false
+          - label: Open Graph Title
+            name: og:title
+            widget: string
+            required: false
+          - label: Open Graph Image
+            name: og:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Twitter Title
+            name: twitter:title
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Card
+            name: twitter:card
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Site
+            name: twitter:site
+            widget: string
+            required: false
+          - label: Twitter Creator
+            name: twitter:creator
+            widget: string
+            required: false
+          - label: Additional HTML tags
+            name: additional_tags
+            widget: text
+            required: false
+  - name: projects_type
+    label: Projects Types
+    folder: cms/projects-type
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: projects-type
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[projects-type].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: product_type
+    label: Product Types
+    folder: cms/product-type
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: product-type
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[product-type].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: services
+    label: Services
+    folder: cms/services
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Service Rich Text
+        name: body
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_service-icon
+        label: Service Icon
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_services-description
+        label: Services Description
+        widget: string
+        required: false
+      - hint: ''
+        name: f_single-service-image
+        label: Single service image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: services
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[services].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: our_works
+    label: Our Projects
+    folder: cms/our-works
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: About the project text
+        name: body
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_project-image
+        label: Project Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_project-type
+        label: Project Type
+        widget: string
+        required: false
+      - hint: ''
+        name: f_single-project-page-image
+        label: Single Project Page image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_project-client-image
+        label: Project Client image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_project-scope-text
+        label: Project Scope text
+        widget: string
+        required: false
+      - hint: ''
+        name: f_client-information-text
+        label: Client information text
+        widget: string
+        required: false
+      - hint: ''
+        name: f_project-completed-text
+        label: Project completed text
+        widget: string
+        required: false
+      - hint: ''
+        name: f_project-client-review-text
+        label: Project client review text
+        widget: string
+        required: false
+      - hint: ''
+        name: f_project-client-name
+        label: Project client name
+        widget: string
+        required: false
+      - hint: ''
+        name: f_project-location
+        label: Project Location
+        widget: string
+        required: false
+      - hint: ''
+        name: f_project-type-category
+        label: Project type category
+        widget: relation
+        required: false
+        collection: projects_type
+        value_field: cms/projects-type/{{slug}}.md
+        search_fields:
+          - slug
+          - name
+        display_fields:
+          - title
+        multiple: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: our-works
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[our-works].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: products
+    label: Products
+    folder: cms/products
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_product-image
+        label: Product Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_product-description
+        label: product description
+        widget: string
+        required: false
+      - hint: ''
+        name: f_product-type-subcategory-2
+        label: Product type subcategory
+        widget: relation
+        required: false
+        collection: product_type
+        value_field: cms/product-type/{{slug}}.md
+        search_fields:
+          - slug
+          - name
+        display_fields:
+          - title
+        multiple: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: products
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[products].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - label: Theme Settings
+    name: settings
+    identifier_field: title
+    extension: json
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    files:
+      - label: General
+        name: site
+        file: cms/_data/settings/site.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: General
+          - hint: Full domain url (needed for a correct sitemap file)
+            name: domain
+            label: Domain
+            widget: string
+            required: false
+          - name: favicon
+            label: Favicon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: apple_touch_icon
+            label: Apple Touch Icon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: header_additional_content
+            label: Additional Content Header
+            hint: Content here will be placed before </head> tag
+            widget: text
+            required: false
+          - name: footer_additional_content
+            label: Additional Content Footer
+            hint: Content here will be placed before </body> tag
+            widget: text
+            required: false
+          - name: images_optimization
+            label: Images Optimization
+            widget: object
+            collapsed: false
+            fields:
+              - label: Image Formats
+                name: formats
+                widget: select
+                multiple: true
+                options:
+                  - label: Avif
+                    value: avif
+                  - label: Webp
+                    value: webp
+              - label: Image Dimensions
+                name: dimensions
+                widget: select
+                multiple: true
+                options:
+                  - label: '500'
+                    value: 500
+                  - label: '800'
+                    value: 800
+                  - label: '1080'
+                    value: 1080
+                  - label: '1600'
+                    value: 1600
+                  - label: '2000'
+                    value: 2000
+                  - label: '2600'
+                    value: 2600
+      - label: Colors
+        name: colors
+        file: cms/_data/colors.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Colors
+      - label: Texts
+        name: texts
+        file: cms/_data/texts.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Texts
+          - hint: 'Original text: Home, key: 2268ff'
+            label: Text
+            name: 2268ff
+            widget: string
+          - hint: 'Original text: About, key: 3c2336d'
+            label: Text
+            name: 3c2336d
+            widget: string
+          - hint: 'Original text: Services, key: 560f747e'
+            label: Text
+            name: 560f747e
+            widget: string
+          - hint: 'Original text: Projects, key: -37ac8366'
+            label: Text
+            name: '-37ac8366'
+            widget: string
+          - hint: 'Original text: Products, key: -37f9ca7c'
+            label: Text
+            name: '-37f9ca7c'
+            widget: string
+          - hint: 'Original text: Contact, key: -64104400'
+            label: Text
+            name: '-64104400'
+            widget: string
+          - hint: 'Original text: Book FREE Consultation, key: 10615a86'
+            label: Text
+            name: 10615a86
+            widget: string
+          - hint: >-
+              Original text: Making Every Room Your Favourite Place., key:
+              5b7370e0
+            label: Text
+            name: 5b7370e0
+            widget: string
+          - hint: >-
+              Original text: Sowiance believes your home should reflect you.
+              Let's craft spaces as unique and vibrant as you., key: -55d5ce30
+            label: Text
+            name: '-55d5ce30'
+            widget: text
+          - hint: 'Original text: Consult Online Now, key: 79f9c5d'
+            label: Text
+            name: 79f9c5d
+            widget: string
+          - hint: 'Original text: Your Space, Our Mastery, key: 3b8aa516'
+            label: Text
+            name: 3b8aa516
+            widget: string
+          - hint: >-
+              Original text: Dive into the world of Sowiance, where each service
+              is a step towards turning your dream space into a stunning
+              reality., key: -4d5779d1
+            label: Text
+            name: '-4d5779d1'
+            widget: text
+          - hint: 'Original text: No items found., key: 3d503d2b'
+            label: Text
+            name: 3d503d2b
+            widget: string
+          - hint: 'Original text: Get in touch, key: -5230a9d2'
+            label: Text
+            name: '-5230a9d2'
+            widget: string
+          - hint: 'Original text: A Legacy of Design Excellence, key: 3f193af1'
+            label: Text
+            name: 3f193af1
+            widget: string
+          - hint: >-
+              Original text: Dive into the world of Sowiance, where every design
+              tells a story of innovation, artistry, and a commitment to
+              transforming spaces into experiences., key: -989c2e7
+            label: Text
+            name: '-989c2e7'
+            widget: text
+          - hint: 'Original text: 200, key: c1b2'
+            label: Text
+            name: c1b2
+            widget: string
+          - hint: 'Original text: +, key: 2b'
+            label: Text
+            name: 2b
+            widget: string
+          - hint: 'Original text: Projects Completed, key: -3e42c1db'
+            label: Text
+            name: '-3e42c1db'
+            widget: string
+          - hint: 'Original text: 150, key: be8c'
+            label: Text
+            name: be8c
+            widget: string
+          - hint: 'Original text: Industry Partnerships, key: 693af8f1'
+            label: Text
+            name: 693af8f1
+            widget: string
+          - hint: 'Original text: About our firm, key: 40311de5'
+            label: Text
+            name: 40311de5
+            widget: string
+          - hint: |-
+              Original text: A simple, yet powerful
+                          and efficient process, key: 19609812
+            label: Text
+            name: '19609812'
+            widget: string
+          - hint: >-
+              Original text: Begin with a personalized consultation where our
+              design experts understand your, key: -234b1eee
+            label: Text
+            name: '-234b1eee'
+            widget: string
+          - hint: 'Original text: 01, key: 601'
+            label: Text
+            name: '601'
+            widget: string
+          - hint: 'Original text: Consultation & Conceptualisation, key: 152d2b82'
+            label: Text
+            name: 152d2b82
+            widget: string
+          - hint: >-
+              Original text: Begin with a personalized consultation where our
+              design experts understand your vision. We then translate your
+              ideas into a unique concept, ensuring it aligns perfectly with
+              your lifestyle and preferences., key: 3d22e19f
+            label: Text
+            name: 3d22e19f
+            widget: text
+          - hint: 'Original text: 02, key: 602'
+            label: Text
+            name: '602'
+            widget: string
+          - hint: 'Original text: 03, key: 603'
+            label: Text
+            name: '603'
+            widget: string
+          - hint: 'Original text: We have worked with great brands, key: -479caed1'
+            label: Text
+            name: '-479caed1'
+            widget: string
+          - hint: >-
+              Original text: Our collaborations with leading brands reflect our
+              commitment to quality and innovation. These partnerships enhance
+              our designs, blending sophistication with the latest trends to
+              deliver unique, high-standard projects., key: 4d600b26
+            label: Text
+            name: 4d600b26
+            widget: text
+          - hint: |-
+              Original text: Contact us today for
+                        a free consultation, key: -25d70b84
+            label: Text
+            name: '-25d70b84'
+            widget: string
+          - hint: >-
+              Original text: Revitalize your home with a free consultation from
+              our interior design experts – where your vision meets our
+              expertise., key: c90346
+            label: Text
+            name: c90346
+            widget: text
+          - hint: |-
+              Original text: Hear what our great
+                      customers say, key: 3b3b0945
+            label: Text
+            name: 3b3b0945
+            widget: string
+          - hint: >-
+              Original text: Celebrating success through our clients' eyes:
+              Discover their stories of transformation and satisfaction., key:
+              3efef622
+            label: Text
+            name: 3efef622
+            widget: text
+          - hint: 'Original text: “One of a kind service”, key: 49191082'
+            label: Text
+            name: '49191082'
+            widget: string
+          - hint: >-
+              Original text: Sowiance transformed my space with style and
+              practicality. Their attention to detail and personal approach made
+              a remarkable difference. I'm thrilled!, key: -192ac91f
+            label: Text
+            name: '-192ac91f'
+            widget: text
+          - hint: 'Original text: Sophie Moore, key: -211238b0'
+            label: Text
+            name: '-211238b0'
+            widget: string
+          - hint: 'Original text: VP of Design at Darkbit, key: 3fd6c9e9'
+            label: Text
+            name: 3fd6c9e9
+            widget: string
+          - hint: 'Original text: “Such a great team”, key: 737313f1'
+            label: Text
+            name: 737313f1
+            widget: string
+          - hint: >-
+              Original text: Sowiance redefined my living space with their
+              innovative designs and meticulous execution. Every detail reflects
+              my taste, creating a harmonious blend of form and function. Truly
+              impressed!, key: 51aae221
+            label: Text
+            name: 51aae221
+            widget: text
+          - hint: 'Original text: “Highly recommended”, key: -477fec9'
+            label: Text
+            name: '-477fec9'
+            widget: string
+          - hint: >-
+              Original text: Collaborating with Sowiance was a delight. Their
+              team skillfully brought my vision to life, achieving a perfect
+              balance between elegance and comfort. My home now feels complete
+              and uniquely mine., key: 7292afb5
+            label: Text
+            name: 7292afb5
+            widget: text
+          - hint: 'Original text: Popular Product, key: -6b0c3d98'
+            label: Text
+            name: '-6b0c3d98'
+            widget: string
+          - hint: >-
+              Original text: Discover our exclusive collection, from
+              contemporary furniture to elegant decor. Elevate your space with
+              unique pieces that blend style and comfort, key: 4c7af129
+            label: Text
+            name: 4c7af129
+            widget: text
+          - hint: 'Original text: Frequently Asked Questions, key: -475b7d60'
+            label: Text
+            name: '-475b7d60'
+            widget: string
+          - hint: >-
+              Original text: What Interior Design Services Does Sowiance Offer?,
+              key: -6bd8d6d
+            label: Text
+            name: '-6bd8d6d'
+            widget: string
+          - hint: >-
+              Original text: Sowiance specializes in interior design for
+              residential, commercial, and hospitality spaces. We provide
+              bespoke designs tailored to each client's unique vision and
+              requirements., key: -2e442d77
+            label: Text
+            name: '-2e442d77'
+            widget: text
+          - hint: >-
+              Original text: How Can I Book a Consultation with Sowiance?, key:
+              150dd840
+            label: Text
+            name: 150dd840
+            widget: string
+          - hint: >-
+              Original text: Booking a consultation is easy! Visit our website,
+              choose a convenient time, or contact us directly via phone or
+              email. We're ready to discuss your project needs., key: 1f58be11
+            label: Text
+            name: 1f58be11
+            widget: text
+          - hint: >-
+              Original text: Does Sowiance Sell Furniture and Decor Items?, key:
+              768bc9a3
+            label: Text
+            name: 768bc9a3
+            widget: string
+          - hint: >-
+              Original text: Yes, Sowiance offers a curated selection of
+              furniture and decor. Explore our online store for exclusive
+              tables, chairs, and unique interior pieces that suit every style.,
+              key: -2597e219
+            label: Text
+            name: '-2597e219'
+            widget: text
+          - hint: >-
+              Original text: What Makes Sowiance Different from Other
+              Designers?, key: -61015696
+            label: Text
+            name: '-61015696'
+            widget: string
+          - hint: >-
+              Original text: Sowiance stands out for its personalized approach,
+              innovative designs, and diverse expertise in various environments.
+              We focus on creating spaces that reflect your personality and
+              functionality., key: -16307fad
+            label: Text
+            name: '-16307fad'
+            widget: text
+          - hint: |-
+              Original text: Contact us for a
+                        free consultation, key: 3557805b
+            label: Text
+            name: 3557805b
+            widget: string
+          - hint: 'Original text: Our services, key: fcf0ad2'
+            label: Text
+            name: fcf0ad2
+            widget: string
+          - hint: >-
+              Original text: Join our newsletter to stay up to date in the world
+              of interior design., key: -36335b5c
+            label: Text
+            name: '-36335b5c'
+            widget: string
+          - hint: 'Original text: Enter your phone number, key: 48e615a0'
+            label: Text
+            name: 48e615a0
+            widget: string
+          - hint: 'Original text: Subscribe, key: -69de02d6'
+            label: Text
+            name: '-69de02d6'
+            widget: string
+          - hint: >-
+              Original text: By subscribing you agree to with our Privacy Policy
+              and provide consent to receive updates from our company., key:
+              -2e9dc819
+            label: Text
+            name: '-2e9dc819'
+            widget: text
+          - hint: 'Original text: Quick Links, key: 15495b86'
+            label: Text
+            name: 15495b86
+            widget: string
+          - hint: 'Original text: Contact us, key: 7f274abe'
+            label: Text
+            name: 7f274abe
+            widget: string
+          - hint: 'Original text: Modular Interiors, key: 5b6ee6ed'
+            label: Text
+            name: 5b6ee6ed
+            widget: string
+          - hint: 'Original text: Full Home Interiors, key: -6b76a7ad'
+            label: Text
+            name: '-6b76a7ad'
+            widget: string
+          - hint: 'Original text: Luxury Interiors, key: -29c6b090'
+            label: Text
+            name: '-29c6b090'
+            widget: string
+          - hint: 'Original text: Renovations, key: -1f8181c0'
+            label: Text
+            name: '-1f8181c0'
+            widget: string
+          - hint: 'Original text: Commercial Interiors, key: -212ce093'
+            label: Text
+            name: '-212ce093'
+            widget: string
+          - hint: 'Original text: Follow Us, key: -5ae80293'
+            label: Text
+            name: '-5ae80293'
+            widget: string
+          - hint: 'Original text: Facebook, key: 217bfee6'
+            label: Text
+            name: 217bfee6
+            widget: string
+          - hint: 'Original text: Instagram, key: 792b2792'
+            label: Text
+            name: 792b2792
+            widget: string
+          - hint: 'Original text: XTwitter, key: -1dfe5105'
+            label: Text
+            name: '-1dfe5105'
+            widget: string
+          - hint: 'Original text: LinkedIn, key: 4b0ff13e'
+            label: Text
+            name: 4b0ff13e
+            widget: string
+          - hint: 'Original text: Youtube, key: 281bc303'
+            label: Text
+            name: 281bc303
+            widget: string
+          - hint: >-
+              Original text: © 2023 Sowiance. All rights reserved., key:
+              -58ee76b
+            label: Text
+            name: '-58ee76b'
+            widget: string
+          - hint: 'Original text: Privacy Policy, key: -3fbde6f6'
+            label: Text
+            name: '-3fbde6f6'
+            widget: string
+          - hint: 'Original text: Terms of Service, key: -7fe2d65b'
+            label: Text
+            name: '-7fe2d65b'
+            widget: string
+          - hint: 'Original text: Cookies Settings, key: 243e72d4'
+            label: Text
+            name: 243e72d4
+            widget: string
+          - hint: 'Original text: Designed and Developed by, key: 2f9c11c7'
+            label: Text
+            name: 2f9c11c7
+            widget: string
+          - hint: 'Original text: Emilda Solutions, key: -7c9b8a7e'
+            label: Text
+            name: '-7c9b8a7e'
+            widget: string
+          - hint: 'Original text: Begin Your FREE Design Consultation, key: 7b18c3cd'
+            label: Text
+            name: 7b18c3cd
+            widget: string
+          - hint: >-
+              Original text: Claim your free consultation and pave the way to
+              your ideal space today, key: -748f37b7
+            label: Text
+            name: '-748f37b7'
+            widget: string
+          - hint: 'Original text: Flexible Scheduling, key: -61c1eef7'
+            label: Text
+            name: '-61c1eef7'
+            widget: string
+          - hint: 'Original text: Flexible Personalized Expert Advice, key: 5b72b0d3'
+            label: Text
+            name: 5b72b0d3
+            widget: string
+          - hint: 'Original text: Immediate Project Estimation, key: 6dedf0a1'
+            label: Text
+            name: 6dedf0a1
+            widget: string
+          - hint: 'Original text: Full name, key: 1002a95c'
+            label: Text
+            name: 1002a95c
+            widget: string
+          - hint: 'Original text: Email Address, key: -2b7010d0'
+            label: Text
+            name: '-2b7010d0'
+            widget: string
+          - hint: 'Original text: Phone Number, key: -55f81185'
+            label: Text
+            name: '-55f81185'
+            widget: string
+          - hint: 'Original text: Location, key: 752a03d5'
+            label: Text
+            name: 752a03d5
+            widget: string
+          - hint: 'Original text: Service, key: -2683a16b'
+            label: Text
+            name: '-2683a16b'
+            widget: string
+          - hint: 'Original text: Plot Size, key: -1fee4420'
+            label: Text
+            name: '-1fee4420'
+            widget: string
+          - hint: >-
+              Original text: Thank you! Your submission has been received!, key:
+              5a0ea5a1
+            label: Text
+            name: 5a0ea5a1
+            widget: string
+          - hint: >-
+              Original text: Oops! Something went wrong while submitting the
+              form., key: -7c112e99
+            label: Text
+            name: '-7c112e99'
+            widget: string
+          - hint: 'Original text: We are associated with, key: -5090de5e'
+            label: Text
+            name: '-5090de5e'
+            widget: string
+          - hint: 'Original text: Get Started, key: -364d0a89'
+            label: Text
+            name: '-364d0a89'
+            widget: string
+          - hint: >-
+              Original text: Ready to transform your space? Reach out to us!
+              Fill in the form below, and let’s start crafting your dream design
+              together., key: 3a4728b3
+            label: Text
+            name: 3a4728b3
+            widget: text
+          - hint: 'Original text: Message, key: -63dc6819'
+            label: Text
+            name: '-63dc6819'
+            widget: string
+          - hint: 'Original text: Visit our office, key: 56d70c25'
+            label: Text
+            name: 56d70c25
+            widget: string
+          - hint: 'Original text: Banglore, IND, key: -7f3a82c3'
+            label: Text
+            name: '-7f3a82c3'
+            widget: string
+          - hint: >-
+              Original text: Site No. 5, 6, 9 & 10, Kanakanagar 10th Cross, Rt
+              Nagar, Bangalore - 560032 (Near Seervi Samajika Temple), key:
+              bf0d222
+            label: Text
+            name: bf0d222
+            widget: text
+          - hint: 'Original text: Email address, key: 71575750'
+            label: Text
+            name: '71575750'
+            widget: string
+          - hint: 'Original text: admin@sowiance.com, key: -4635761f'
+            label: Text
+            name: '-4635761f'
+            widget: string
+          - hint: "Original text: Discover design excellence in person: \_Our office doors are open for you to explore your dream space possibilities., key: -a49189b"
+            label: Text
+            name: '-a49189b'
+            widget: text
+          - hint: 'Original text: Send us an email, key: 6a39ecb3'
+            label: Text
+            name: 6a39ecb3
+            widget: string
+          - hint: >-
+              Original text: Drop us an email for quick, personalized design
+              guidance, key: 5040b76e
+            label: Text
+            name: 5040b76e
+            widget: string
+          - hint: 'Original text: Give us a call, key: -2c7bbb0'
+            label: Text
+            name: '-2c7bbb0'
+            widget: string
+          - hint: 'Original text: +91-9008304218 , key: -42f2a32b'
+            label: Text
+            name: '-42f2a32b'
+            widget: string
+          - hint: 'Original text: +91-9590862921, key: 36149741'
+            label: Text
+            name: '36149741'
+            widget: string
+          - hint: 'Original text: Elevating Spaces, Enhancing Lives, key: -c6b4758'
+            label: Text
+            name: '-c6b4758'
+            widget: string
+          - hint: >-
+              Original text: Discover the art of elegant living with Sowiance
+              where every detail is a reflection of your style our team ensures
+              seamless design experiences from concept to completion, your
+              vision becomes reality., key: 65f83c82
+            label: Text
+            name: 65f83c82
+            widget: text
+          - hint: 'Original text: Companies helped, key: 17ee1da5'
+            label: Text
+            name: 17ee1da5
+            widget: string
+          - hint: 'Original text: m, key: 6d'
+            label: Text
+            name: 6d
+            widget: string
+          - hint: 'Original text: Revenue generated, key: -4a663195'
+            label: Text
+            name: '-4a663195'
+            widget: string
+          - hint: >-
+              Original text: Revolutionizing Interior Design Spaces, key:
+              -741015a9
+            label: Text
+            name: '-741015a9'
+            widget: string
+          - hint: >-
+              Original text: At Sowiance, we're dedicated to creating spaces
+              that resonate with individuality and purpose. Our mission is to
+              blend aesthetic beauty with practical functionality, transforming
+              your vision into a reality that enhances every aspect of your
+              daily living., key: -40169ecd
+            label: Text
+            name: '-40169ecd'
+            widget: text
+          - hint: 'Original text: Why , key: 292178'
+            label: Text
+            name: '292178'
+            widget: string
+          - hint: 'Original text: Choose us?, key: -10a74008'
+            label: Text
+            name: '-10a74008'
+            widget: string
+          - hint: >-
+              Original text: Choosing the right interior design partner is a big
+              decision. Your space reflects you, and we're here to offer a
+              unique and unparalleled experience., key: -24fafc10
+            label: Text
+            name: '-24fafc10'
+            widget: text
+          - hint: 'Original text: Expert Designers, key: 1e4bd072'
+            label: Text
+            name: 1e4bd072
+            widget: string
+          - hint: 'Original text: Quality Assurance, key: db0610c'
+            label: Text
+            name: db0610c
+            widget: string
+          - hint: 'Original text: Customer-Centric Approach, key: 67478013'
+            label: Text
+            name: '67478013'
+            widget: string
+          - hint: >-
+              Original text: Cultivating Excellence: Sowiance's Six Pillars of
+              Interior Design Innovation, key: 33c728d2
+            label: Text
+            name: 33c728d2
+            widget: string
+          - hint: >-
+              Original text: Discover how Sowiance redefines interior design
+              with these six core principles, setting the benchmark for timeless
+              elegance and innovation., key: -5c1c63a7
+            label: Text
+            name: '-5c1c63a7'
+            widget: text
+          - hint: 'Original text: Innovation, key: -4028fe7b'
+            label: Text
+            name: '-4028fe7b'
+            widget: string
+          - hint: >-
+              Original text: Striving for inventive design solutions, we foster
+              an environment of continuous creativity, pushing boundaries to
+              craft captivating interiors., key: 46fcaa8c
+            label: Text
+            name: 46fcaa8c
+            widget: text
+          - hint: 'Original text: Quality, key: -75f6a721'
+            label: Text
+            name: '-75f6a721'
+            widget: string
+          - hint: >-
+              Original text: Our unwavering commitment to excellence ensures
+              that every project meets and exceeds exacting standards,
+              delivering enduring quality., key: -6d706375
+            label: Text
+            name: '-6d706375'
+            widget: text
+          - hint: 'Original text: Integrity, key: -6b2de0d3'
+            label: Text
+            name: '-6b2de0d3'
+            widget: string
+          - hint: >-
+              Original text: Upholding transparency and honesty, we cultivate
+              trustworthy partnerships, underpinned by ethical collaboration and
+              integrity., key: -1ef948d2
+            label: Text
+            name: '-1ef948d2'
+            widget: text
+          - hint: 'Original text: 04, key: 604'
+            label: Text
+            name: '604'
+            widget: string
+          - hint: 'Original text: Sustainability, key: -1baefe39'
+            label: Text
+            name: '-1baefe39'
+            widget: string
+          - hint: 'Original text: 05, key: 605'
+            label: Text
+            name: '605'
+            widget: string
+          - hint: 'Original text: Customization, key: -6eca284d'
+            label: Text
+            name: '-6eca284d'
+            widget: string
+          - hint: >-
+              Original text: Your vision is our blueprint, resulting in
+              personalized designs that harmonize with your unique lifestyle and
+              preferences., key: 7d1777b1
+            label: Text
+            name: 7d1777b1
+            widget: text
+          - hint: 'Original text: 06, key: 606'
+            label: Text
+            name: '606'
+            widget: string
+          - hint: >-
+              Original text: We respect your time and demand precision, managing
+              projects efficiently with meticulous attention to detail for
+              timely completion, key: -7ccba199
+            label: Text
+            name: '-7ccba199'
+            widget: text
+          - hint: 'Original text: Hear what our great customers say, key: 156ae1ef'
+            label: Text
+            name: 156ae1ef
+            widget: string
+          - hint: >-
+              Original text: Our customers' satisfaction is our ultimate reward.
+              We take immense pride in their positive feedback and stories of
+              transformed spaces., key: -40ab34cd
+            label: Text
+            name: '-40ab34cd'
+            widget: text
+          - hint: 'Original text: “Highly recommended them”, key: 7cc96887'
+            label: Text
+            name: 7cc96887
+            widget: string
+          - hint: >-
+              Original text: I'm thrilled with the transformation Sowiance
+              brought to my home. Their dedication to excellence shines through
+              in every detail. Highly recommended!, key: -769ec883
+            label: Text
+            name: '-769ec883'
+            widget: text
+          - hint: 'Original text: Ashwanth Goyal, key: -1bd5c582'
+            label: Text
+            name: '-1bd5c582'
+            widget: string
+          - hint: 'Original text: Koramangala, Bengaluru, key: 2e627ac7'
+            label: Text
+            name: 2e627ac7
+            widget: string
+          - hint: >-
+              Original text: Explore our comprehensive services tailored for
+              every aspect of your design vision, key: -5500266d
+            label: Text
+            name: '-5500266d'
+            widget: string
+          - hint: 'Original text: Our Products, key: -7a5fd008'
+            label: Text
+            name: '-7a5fd008'
+            widget: string
+          - hint: 'Original text: All, key: 10181'
+            label: Text
+            name: '10181'
+            widget: string
+          - hint: 'Original text: CHAIR, key: 3d1dea5'
+            label: Text
+            name: 3d1dea5
+            widget: string
+          - hint: 'Original text: TABLE, key: 4be43ae'
+            label: Text
+            name: 4be43ae
+            widget: string
+          - hint: 'Original text: Our Works, key: 527656e'
+            label: Text
+            name: 527656e
+            widget: string
+          - hint: 'Original text: Showcasing our, key: 70d3d776'
+            label: Text
+            name: 70d3d776
+            widget: string
+          - hint: 'Original text: exquisite craftmanship, key: 6b8639bd'
+            label: Text
+            name: 6b8639bd
+            widget: string
+          - hint: >-
+              Original text: Sowiance's craftsmanship blends quality and
+              innovation, transforming spaces into elegant, sophisticated
+              masterpieces., key: 651d8181
+            label: Text
+            name: 651d8181
+            widget: text
+          - hint: 'Original text: RESIDENTIAL, key: -3e34e51c'
+            label: Text
+            name: '-3e34e51c'
+            widget: string
+          - hint: 'Original text: COMMERCIAL, key: 52b2a74a'
+            label: Text
+            name: 52b2a74a
+            widget: string
+          - hint: 'Original text: HOTELS, key: 7f5d693f'
+            label: Text
+            name: 7f5d693f
+            widget: string
+          - hint: 'Original text: Project scope, key: -73daa993'
+            label: Text
+            name: '-73daa993'
+            widget: string
+          - hint: 'Original text: Client information, key: -18c8789'
+            label: Text
+            name: '-18c8789'
+            widget: string
+          - hint: 'Original text: Project completed, key: -1b68a61c'
+            label: Text
+            name: '-1b68a61c'
+            widget: string
+          - hint: 'Original text: About the Project, key: -6f8e9de9'
+            label: Text
+            name: '-6f8e9de9'
+            widget: string
+          - hint: 'Original text: Open Project blueprints, key: -d1926c3'
+            label: Text
+            name: '-d1926c3'
+            widget: string
+          - hint: >-
+              Original text: Our Open Project Blueprints provide a transparent
+              view of our design process, showcasing detailed plans and layouts.
+              These blueprints highlight our creative approach, ensuring
+              functionality and aesthetic appeal in every space., key: -cf427b8
+            label: Text
+            name: '-cf427b8'
+            widget: text
+          - hint: 'Original text: Furniture collections, key: -3470e1b9'
+            label: Text
+            name: '-3470e1b9'
+            widget: string
+          - hint: >-
+              Original text: Sowiance's Furniture Collections are a blend of
+              elegance and practicality, featuring bespoke pieces crafted for
+              comfort and style. Each collection is thoughtfully curated to
+              enhance any interior, reflecting contemporary trends and timeless
+              designs., key: -15179e5b
+            label: Text
+            name: '-15179e5b'
+            widget: text
+          - hint: 'Original text: Sustainable material choices, key: -20b1ff24'
+            label: Text
+            name: '-20b1ff24'
+            widget: string
+          - hint: >-
+              Original text: We prioritize sustainability by incorporating
+              eco-friendly materials in our designs. Our selection includes
+              recycled, renewable, and low-impact materials, ensuring that each
+              project not only looks great but also contributes positively to
+              the environment., key: -264921f
+            label: Text
+            name: '-264921f'
+            widget: text
+          - hint: 'Original text: Related Projects, key: 55cb850f'
+            label: Text
+            name: 55cb850f
+            widget: string
+          - hint: 'Original text: View ALL, key: 4b094da6'
+            label: Text
+            name: 4b094da6
+            widget: string
+          - hint: 'Original text: Getting started, key: -2bd1a87b'
+            label: Text
+            name: '-2bd1a87b'
+            widget: string
+      - label: Links
+        name: links
+        file: cms/_data/links.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Links
+          - hint: 'Original link: /, key: 2f'
+            label: Link
+            name: 2f
+            widget: string
+          - hint: 'Original link: /about-us-page/, key: 16cdb3c0'
+            label: Link
+            name: 16cdb3c0
+            widget: string
+          - hint: 'Original link: /services-page/, key: -46e2a8c0'
+            label: Link
+            name: '-46e2a8c0'
+            widget: string
+          - hint: 'Original link: /our-works-page/, key: -2ad81f9b'
+            label: Link
+            name: '-2ad81f9b'
+            widget: string
+          - hint: 'Original link: /all-products-page/, key: -1a50360e'
+            label: Link
+            name: '-1a50360e'
+            widget: string
+          - hint: 'Original link: /contact-page/, key: 5b6d93c4'
+            label: Link
+            name: 5b6d93c4
+            widget: string
+          - hint: 'Original link: /consultation-page/, key: 656cfdab'
+            label: Link
+            name: 656cfdab
+            widget: string
+          - hint: 'Original link: #, key: 23'
+            label: Link
+            name: '23'
+            widget: string
+          - hint: >-
+              Original link:
+              https://www.facebook.com/profile.php?id=61554193448126, key:
+              -3c6b7eeb
+            label: Link
+            name: '-3c6b7eeb'
+            widget: string
+          - hint: 'Original link: https://www.instagram.com/sowiance/, key: -768df47e'
+            label: Link
+            name: '-768df47e'
+            widget: string
+      - label: Images
+        name: images
+        file: cms/_data/images.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Images
+          - label: Image
+            name: i967ca8f
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i6398b997
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 6fb8159b
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 74f7b793
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 7adcddc3
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 723478ea
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '551262e7'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i6a824a60
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 74cd7110
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i5f788db3
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i20c89777
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i53e8ec6b
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i53dad4ea
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 2eb9bc50
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i54087748
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-1628f095'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-2a485a80'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 43e6cd85
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-6a5a81cc'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 6502c001
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 2d98dcf8
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 7f2a7e9a
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 101fa572
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-295906dc'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-294aef5b'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-293cd7da'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-292ec059'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-2920a8d8'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 7c99d3b1
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 7180fca8
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 71489ea4
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 7156b625
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '7172e527'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 7164cda6
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 56aba91
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-4c84f2d9'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 5ec7cecf
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-b54300e'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-51037580'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-3c8c5375'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-60cece30'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-55f5adeb'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-5603c56c'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-54087748'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 3f9adeb5
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 3fa6d3b3
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-40c3482e'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 1ba7d225
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-3ecda44f'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 4813db0
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '39363130'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 3b19c2b2
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 3b0bab31
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 3fd414c4
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+publish_mode: editorial_workflow
